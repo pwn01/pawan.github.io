@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>SVG World</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
 <style>
   
 body { margin: 0;}
@@ -33,6 +35,24 @@ body {
 
  <iframe src="traveler.html"  class="foo" scrolling="no" frameborder="0"></iframe>
 
-
+<script>
+    window.addEventListener('load', () => {
+      registerSW();
+    });
+ 
+    // Register the Service Worker
+    async function registerSW() {
+      if ('serviceWorker' in navigator) {
+        try {
+          await navigator
+                .serviceWorker
+                .register('serviceworker.js');
+        }
+        catch (e) {
+          console.log('SW registration failed');
+        }
+      }
+    }
+ </script>
 </body>
 </html>
